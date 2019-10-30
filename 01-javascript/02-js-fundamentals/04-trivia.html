@@ -1,1 +1,54 @@
-<!-- 2 hours -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia Game</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    .wrapper {
+        width: 70%;
+        margin: 0 auto;
+        background-color: grey;
+    }
+    .btn-success {
+        width: 30%;
+        margin: 5% 35%;
+    }
+</style>
+</head>
+
+<body>
+
+    <div class='wrapper'>
+        <button type="button" class="btn btn-success start-btn">Get Trivia Questions</button>
+        <div class="return">
+
+
+        </div>
+
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $('.start-btn').click(function(){
+            $.get('https://opentdb.com/api.php?amount=10', triviaData);
+            $('.return').slideToggle();
+        });
+        var count = 0
+        function triviaData(info) {
+            const triviaQuestions = info.results
+            console.log(triviaQuestions)
+            for(var question of triviaQuestions){
+                count +=1;
+                const element = (`Category: ${question.category}, Question: ${question.question}, Correct Answer: ${question.correct_answer}, Incorrect Answer: ${question.incorrect_answers} <br>`)
+               console.log(element);
+                $(".return").append(element)
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+Git add -A
+git commit -m ‘a message’
+Git push origin master
+https://github.com/DojoDrills/mean-assignment-landscape
