@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Colors</title>
+    <style>
+        .wrapper {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Real Time Colors</h1>
+        </div>
+        <div class="body">
+            <form action="/" class="green">
+                <input type="submit" name="green">
+            </form>
+            <br>
+            <form action="/" class="blue">
+                <input type="submit" name="blue">
+            </form>
+            <br>
+            <form action="/" class="pink">
+                <input type="submit" name="pink">
+            </form>
+            <br>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+    
+            var socket = io.connect();
+            socket.on('color', (data) => {
+                $('.wrapper').attr("style", `background-color:${data.color}`)
+            });
+            socket.on('update_color', (data) => {
+                $('.wrapper').attr("style", `background-color:${data.color}`)
+            });
+            $('.green').submit(()=>{
+                socket.emit('green')
+            });
+            $('.blue').submit(() => {
+                socket.emit('blue')
+            });
+            $('.pink').submit(() => {
+                socket.emit('pink')
+            });
+        });
+    </script>
+</body>
+</html>
