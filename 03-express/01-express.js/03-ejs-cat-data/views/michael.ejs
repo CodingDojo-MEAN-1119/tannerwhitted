@@ -1,0 +1,13 @@
+<html>
+<body>
+    <% for (var cat of cat) { %>
+    <h2> <%= cat.name %> </h2>
+    <h3>Favorite Food: <%= cat.favoriteFood %></h3>
+    <h4>Age: <%= cat.age %></h4>
+    <% for (var cat of cat.likes) { %>
+    <h4>Likes: <%= cat.likes %></h4>
+    <% } %>
+    <hr>
+    <% } %>
+</body>
+</html>

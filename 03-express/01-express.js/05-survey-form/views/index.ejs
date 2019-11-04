@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/03-express/01-express.js/05-survey-form/stylesheets/index.css">
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="body">
+            <h1>form</h1>
+            <form action="/result" method="POST">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input name="name" type="password" class="form-control" id="exampleInputPassword1" placeholder="Name">
+                </div>
+                <select class="custom-select" name="location" >
+                    <option selected>Location</option>
+                    <option value="seatlle">Seattle</option>
+                    <option value="sanFransisco">San Fransisco</option>
+                    <option value="newYork">New York</option>
+                </select>
+                <br>
+                <select class="custom-select" name="language" >
+                    <option selected>Favorite language</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="mean">Mean</option>
+                </select>
+                <div class="form-group">
+                        <label for="exampleInputPassword1">Comments</label>
+                        <input name="comment" type="password" class="form-control" id="exampleInputPassword1" placeholder="Comments">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

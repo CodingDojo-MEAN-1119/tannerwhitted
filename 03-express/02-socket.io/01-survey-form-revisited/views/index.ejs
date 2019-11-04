@@ -1,0 +1,92 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type ="text/javascript">
+    $(document).ready(function (){
+
+        var socket = io.connect();
+        $('#survey_form').submit(function(e) {
+            e.preventDefault();
+            socket.emit("posting_form", {
+                name: $('#name').val(),
+                location: $('#location').val(),
+                language: $('#language').val(),
+                comment: $('#comment').val()
+                });
+        });
+        socket.on('updated_message', function (data){
+            $('#message').html("You emitted the following information to the server: " + JSON.stringify(data.response));
+        });
+        socket.on('random_number', function (data){
+            $('#number').html("Your lucky number emitted by the server is : " + JSON.stringify(data.response));
+        });
+    });
+</script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+    $(document).ready(function (){
+
+        var socket = io.connect();
+        $('#survey_form').submit(function(e) {
+            e.preventDefault();
+            socket.emit("posting_form", {
+                name: $('#name').val(),
+                location: $('#location').val(),
+                language: $('#language').val(),
+                comment: $('#comment').val()
+                });
+        });
+        socket.on('updated_message', function (data){
+            $('#message').html("You emitted the following information to the server: " + JSON.stringify(data.response));
+        });
+        socket.on('random_number', function (data){
+            $('#number').html("Your lucky number emitted by the server is : " + JSON.stringify(data.response));
+        });
+    });
+</script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="body">
+            <h1>form</h1>
+            <form action="/result" method="POST">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input name="name" type="password" class="form-control" id="exampleInputPassword1" placeholder="Name">
+                </div>
+                <select class="custom-select" name="location" >
+                    <option selected>Location</option>
+                    <option value="seatlle">Seattle</option>
+                    <option value="sanFransisco">San Fransisco</option>
+                    <option value="newYork">New York</option>
+                </select>
+                <br>
+                <select class="custom-select" name="language" >
+                    <option selected>Favorite language</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="mean">Mean</option>
+                </select>
+                <div class="form-group">
+                        <label for="exampleInputPassword1">Comments</label>
+                        <input name="comment" type="password" class="form-control" id="exampleInputPassword1" placeholder="Comments">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
