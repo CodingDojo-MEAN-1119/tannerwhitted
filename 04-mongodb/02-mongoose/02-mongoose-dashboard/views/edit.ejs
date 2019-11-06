@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+</head>
+<body>
+  <h1>Edit #<%= Moongoose.name %>!</h1>
+  <form action="/<%= Moongoose.id %>" method='post'>
+    Name: <input type="text" name="name" value="<%= Moongoose.name %>">
+    Weight: <input type="text" name="weight" value="<%= Moongoose.weight %>">
+    Color: <input type="text" name="color" value="<%= Moongoose.color %>">
+    <input type="submit" value="Edit Moongoose!">
+  </form>
+  <a href="/">Home</a>
+</body>
+</html>

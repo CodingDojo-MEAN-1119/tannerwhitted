@@ -1,0 +1,143 @@
+
+C:\Users\ddoug\Desktop\Coding Dojo\cmder
+λ "C:\Program Files\MongoDB\Server\4.2\bin\mongo.exe"
+MongoDB shell version v4.2.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("29d48954-f787-4083-8588-fd68970ac81e") }
+MongoDB server version: 4.2.1
+Server has startup warnings:
+2019-11-05T06:35:54.225-0800 I  CONTROL  [initandlisten]
+2019-11-05T06:35:54.226-0800 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-11-05T06:35:54.226-0800 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-11-05T06:35:54.226-0800 I  CONTROL  [initandlisten]
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use test_db
+switched to db test_db
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db
+test_db
+> db.createCollection("students")
+{ "ok" : 1 }
+> db.students.insert({name: "tom, home_state: "WA", lucky_number: 22, birthday: {month: 10, day: 10, year: 90}})
+2019-11-05T06:43:16.677-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:45
+> db.students.insert({name: "tom, home_state: "WA", lucky_number: 22, birthday: {month: 10, day: 10, year: 90}})
+2019-11-05T06:44:26.132-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:45
+> db.students.insert({name: "tom", home_state: "WA", lucky_number: 22, birthday: {month: 10, day: 10, year: 90}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "jane", home_state: "WA", lucky_number: 45, birthday: {month: 10, day: 12, year: 92}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "bob", home_state: "WA", lucky_number: 5, birthday: {month: 01, day: 09, year: 88}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "ross", home_state: "CA", lucky_number: 99, birthday: {month: 06, day: 17, year: 85}})
+WriteResult({ "nInserted" : 1 })
+> db.students.insert({name: "steve", home_state: "CA", lucky_number: 11, birthday: {month: 06, day: 10, year: 86}})
+WriteResult({ "nInserted" : 1 })
+> db.students.find({state: "CA"})
+> db.students.find({home_state: "CA"})
+{ "_id" : ObjectId("5dc18b7ad9c012e4b44236a8"), "name" : "ross", "home_state" : "CA", "lucky_number" : 99, "birthday" : { "month" : 6, "day" : 17, "year" : 85 } }
+{ "_id" : ObjectId("5dc18b91d9c012e4b44236a9"), "name" : "steve", "home_state" : "CA", "lucky_number" : 11, "birthday" : { "month" : 6, "day" : 10, "year" : 86 } }
+> db.students.find()
+{ "_id" : ObjectId("5dc18b20d9c012e4b44236a5"), "name" : "tom", "home_state" : "WA", "lucky_number" : 22, "birthday" : { "month" : 10, "day" : 10, "year" : 90 } }
+{ "_id" : ObjectId("5dc18b3ed9c012e4b44236a6"), "name" : "jane", "home_state" : "WA", "lucky_number" : 45, "birthday" : { "month" : 10, "day" : 12, "year" : 92 } }
+{ "_id" : ObjectId("5dc18b5ad9c012e4b44236a7"), "name" : "bob", "home_state" : "WA", "lucky_number" : 5, "birthday" : { "month" : 1, "day" : 9, "year" : 88 } }
+{ "_id" : ObjectId("5dc18b7ad9c012e4b44236a8"), "name" : "ross", "home_state" : "CA", "lucky_number" : 99, "birthday" : { "month" : 6, "day" : 17, "year" : 85 } }
+{ "_id" : ObjectId("5dc18b91d9c012e4b44236a9"), "name" : "steve", "home_state" : "CA", "lucky_number" : 11, "birthday" : { "month" : 6, "day" : 10, "year" : 86 } }
+> db.ninja.find().pretty()
+> db.students.find().pretty()
+
+        "_id" : ObjectId("5dc18b20d9c012e4b44236a5"),
+        "name" : "tom",
+        "home_state" : "WA",
+        "lucky_number" : 22,
+        "birthday" : {
+                "month" : 10,
+                "day" : 10,
+                "year" : 90
+        }
+}
+
+        "_id" : ObjectId("5dc18b3ed9c012e4b44236a6"),
+        "name" : "jane",
+        "home_state" : "WA",
+        "lucky_number" : 45,
+        "birthday" : {
+                "month" : 10,
+                "day" : 12,
+                "year" : 92
+        }
+}
+
+        "_id" : ObjectId("5dc18b5ad9c012e4b44236a7"),
+        "name" : "bob",
+        "home_state" : "WA",
+        "lucky_number" : 5,
+        "birthday" : {
+                "month" : 1,
+                "day" : 9,
+                "year" : 88
+        }
+}
+
+        "_id" : ObjectId("5dc18b7ad9c012e4b44236a8"),
+        "name" : "ross",
+        "home_state" : "CA",
+        "lucky_number" : 99,
+        "birthday" : {
+                "month" : 6,
+                "day" : 17,
+                "year" : 85
+        }
+}
+
+        "_id" : ObjectId("5dc18b91d9c012e4b44236a9"),
+        "name" : "steve",
+        "home_state" : "CA",
+        "lucky_number" : 11,
+        "birthday" : {
+                "month" : 6,
+                "day" : 10,
+                "year" : 86
+        }
+}
+> db.students.find({lucky_number: >3})
+2019-11-05T06:50:34.255-0800 E  QUERY    [js] uncaught exception: SyntaxError: expected expression, got '>' :
+@(shell):1:32
+> db.students.find({lucky_number: {$gt: 3}})
+{ "_id" : ObjectId("5dc18b20d9c012e4b44236a5"), "name" : "tom", "home_state" : "WA", "lucky_number" : 22, "birthday" : { "month" : 10, "day" : 10, "year" : 90 } }
+{ "_id" : ObjectId("5dc18b3ed9c012e4b44236a6"), "name" : "jane", "home_state" : "WA", "lucky_number" : 45, "birthday" : { "month" : 10, "day" : 12, "year" : 92 } }
+{ "_id" : ObjectId("5dc18b5ad9c012e4b44236a7"), "name" : "bob", "home_state" : "WA", "lucky_number" : 5, "birthday" : { "month" : 1, "day" : 9, "year" : 88 } }
+{ "_id" : ObjectId("5dc18b7ad9c012e4b44236a8"), "name" : "ross", "home_state" : "CA", "lucky_number" : 99, "birthday" : { "month" : 6, "day" : 17, "year" : 85 } }
+{ "_id" : ObjectId("5dc18b91d9c012e4b44236a9"), "name" : "steve", "home_state" : "CA", "lucky_number" : 11, "birthday" : { "month" : 6, "day" : 10, "year" : 86 } }
+> db.students.find({$and:[{lucky_number:{$lte:9}}, {lucky_number:{$gte:1}}]})
+{ "_id" : ObjectId("5dc18b5ad9c012e4b44236a7"), "name" : "bob", "home_state" : "WA", "lucky_number" : 5, "birthday" : { "month" : 1, "day" : 9, "year" : 88 } }
+> db.students.update({},{$set: {"interests":['coding', 'brunch', 'MongoDB']}},{multi:true})
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.students.update({name: "tom"},{$push: {interests: "taxes"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({name: "tom"},{$pull: {interests: "taxes"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.remove({name:"ross"})
+WriteResult({ "nRemoved" : 1 })
+> db.students.remove({lucky_number: {$gt:5}}, {justOne:true})
+WriteResult({ "nRemoved" : 1 })
+>

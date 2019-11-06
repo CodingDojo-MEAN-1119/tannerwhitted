@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+</head>
+<body>
+  <h1>Index Page!</h1>
+  <a href="/new">Create new Mongoose</a>
+  <% for (const Mongoose in Mongooses) { %>
+    <p>Name: <a href="/<%= Mongoose._id %>"><%= Mongoose.name %></a>
+      <a href="/<%= Mongoose._id %>/edit/"><button>Edit Mongoose</button></a>
+      <form action="/<%= Mongoose._id %>/delete/" method='post'>
+        <input type="submit" value="Delete">
+      </form>
+    </p>
+  <% } %>
+</body>
+</html>
