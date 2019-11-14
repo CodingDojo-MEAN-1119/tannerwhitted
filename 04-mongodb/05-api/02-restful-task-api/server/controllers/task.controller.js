@@ -8,9 +8,20 @@ module.exports = {
       .catch(errorHandler.bind(response));
   },
   show(request, response) {
+    console.log("thing", request.params);
     Task.findById(request.params.id)
       .then(task => response.json(task))
       .catch(errorHandler.bind(response));
+  },
+  poke(request, response) {
+    Task.find(request.body)
+      .then(tasks => response.json(task))
+      .catch(errorHandler.bind(response));
+  },
+  postToServer(request, response) {
+    Task.findbyId(request.params.id)
+    .then(task => response.json(task))
+    .catch(errorHandler.bind(response));
   },
   create(request, response) {
     const thisTask = new Task();
