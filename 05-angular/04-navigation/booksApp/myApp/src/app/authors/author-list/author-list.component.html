@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Authors</title>
+</head>
+<body>
+
+  <!-- <app-author-new (createAuthor)='onCreate($event)'></app-author-new> -->
+
+
+
+    <section>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Author</th>
+              <th>Quote</th>
+              <th>Future Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let author of authors'
+            (click)='onSelect(author)'
+            [routerLink]="[author._id]"
+            >
+              <td>{{ author._id }}</td>
+              <td>{{ author.name }}</td>
+              <td>{{ author.quote }}</td>
+              <td (click)= 'onEvent($event)'>
+                <button (click) = 'onDelete(author)'>Delete</button>
+                <button [routerLink]='[author._id,"edit"]'>Edit</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+
+      <!-- <app-author-detail [author]='selectedAuthor'></app-author-detail> -->
+
+
+    </body>
+</html>

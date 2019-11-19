@@ -1,0 +1,17 @@
+    <section>
+        <fieldset>
+          <legend>Write a quote!</legend>
+          <form (submit) = 'onSubmit($event, authorForm)' #authorForm='ngForm'>
+            {{authorForm.valid | json}}
+            <div class="form_group">
+              <label for="">Name</label>
+              <input type="text" class="form_control" name="name" [(ngModel)]='author.name' required >
+            </div>
+            <div class="form_group">
+              <label for="">Quote</label>
+              <input type="text" class="form_control" name="quote" [(ngModel)]='author.quote' required>
+            </div>
+              <input *ngIf="authorForm.valid" type="submit">
+          </form>
+        </fieldset>
+      </section>
